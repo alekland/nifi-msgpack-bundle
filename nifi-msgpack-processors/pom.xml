@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.apache.nifi</groupId>
         <artifactId>nifi-msgpack-bundle</artifactId>
-        <version>0.6.1</version>
+        <version>1.11.4</version>
     </parent>
 
     <artifactId>nifi-msgpack-processors</artifactId>
@@ -29,20 +29,22 @@
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-api</artifactId>
+            <version>1.11.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-processor-utils</artifactId>
+            <version>1.11.4</version>
         </dependency>
         <dependency>
            <groupId>org.msgpack</groupId>
            <artifactId>msgpack-core</artifactId>
-           <version>0.8.7</version>
+           <version>0.9.3</version>
         </dependency>
         <dependency>
            <groupId>org.msgpack</groupId>
            <artifactId>jackson-dataformat-msgpack</artifactId>
-           <version>0.8.7</version>
+           <version>0.9.3</version>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
