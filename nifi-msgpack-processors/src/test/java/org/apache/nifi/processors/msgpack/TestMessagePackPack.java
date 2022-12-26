@@ -20,9 +20,6 @@ import java.io.*;
 import java.util.Map;
 import java.util.HashMap;
 import java.io.IOException;
-import java.nio.IntBuffer;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 import org.apache.nifi.flowfile.attributes.CoreAttributes;
