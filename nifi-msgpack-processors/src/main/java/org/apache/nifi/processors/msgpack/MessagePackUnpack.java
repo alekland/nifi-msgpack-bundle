@@ -22,6 +22,7 @@ import org.apache.nifi.components.PropertyDescriptor;
 import org.apache.nifi.flowfile.FlowFile;
 import org.apache.nifi.flowfile.attributes.CoreAttributes;
 import org.apache.nifi.processor.*;
+import org.apache.commons.io.IOUtils;
 import org.apache.nifi.annotation.behavior.ReadsAttribute;
 import org.apache.nifi.annotation.behavior.WritesAttribute;
 import org.apache.nifi.annotation.lifecycle.OnScheduled;
@@ -53,7 +54,6 @@ public class MessagePackUnpack extends AbstractProcessor {
     private static final String OUT_MIME_EXT = ".json";
 
     private static final String MIME_TYPE = "application/msgpack";
-    private static final String MIME_EXT = ".msgpack";
     private static final String MIME_EXT_KEY = "mime.extension";
 
     public static final PropertyDescriptor INPUT_FORMAT = new PropertyDescriptor
@@ -129,7 +129,7 @@ public class MessagePackUnpack extends AbstractProcessor {
             @Override
             public void process(InputStream is, OutputStream os) throws IOException {
                 try (final OutputStream responseJson = new BufferedOutputStream(os)) {
-                    byte[] msgpack = is.readAllBytes();
+                    byte[] msgpack = IOUtils.toByteArray(is);
                     ObjectMapper mapper = new ObjectMapper(new MessagePackFactory());
                     JsonNode jsonNode = mapper.readTree(msgpack);
                     String responseJsonStr = jsonNode.toString();
