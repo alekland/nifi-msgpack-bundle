@@ -40,12 +40,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
         "will be updated to application/json"
 )
 public class ConvertMsgPackToJSON extends AbstractProcessor {
-    private static final String USE_MIME_TYPE = "use mime.type attribute";
 
-    private static final String OUT_MIME_TYPE = "application/json";
-    private static final String OUT_MIME_EXT = ".json";
+    private static final String MIME_TYPE = "application/json";
+    private static final String MIME_EXT = ".json";
 
-    private static final String MIME_TYPE = "application/msgpack";
     private static final String MIME_EXT_KEY = "mime.extension";
 
     public static final Relationship REL_SUCCESS = new Relationship.Builder()
@@ -124,8 +122,8 @@ public class ConvertMsgPackToJSON extends AbstractProcessor {
             return;
         }
 
-        flowFile = session.putAttribute(flowFile, CoreAttributes.MIME_TYPE.key(), OUT_MIME_TYPE);
-        flowFile = session.putAttribute(flowFile, MIME_EXT_KEY, OUT_MIME_EXT);
+        flowFile = session.putAttribute(flowFile, CoreAttributes.MIME_TYPE.key(), MIME_TYPE);
+        flowFile = session.putAttribute(flowFile, MIME_EXT_KEY, MIME_EXT);
 
         session.transfer(flowFile, REL_SUCCESS);
     }

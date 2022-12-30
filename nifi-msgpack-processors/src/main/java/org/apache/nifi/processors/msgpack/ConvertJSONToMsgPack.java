@@ -55,8 +55,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
         "will be updated to application/msgpack"
 )
 public class ConvertJSONToMsgPack extends AbstractProcessor {
-    private static final String USE_MIME_TYPE = "use mime.type attribute";
-    private static final String JSON = "JSON";
 
     private static final String MIME_TYPE = "application/msgpack";
     private static final String MIME_EXT = ".msgpack";
