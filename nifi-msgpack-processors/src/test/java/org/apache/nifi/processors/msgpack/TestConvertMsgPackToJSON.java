@@ -12,7 +12,7 @@ import org.apache.nifi.util.MockFlowFile;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestMessagePackUnpack {
+public class TestConvertMsgPackToJSON {
 
     private static final String CONTENT = "{\"message\":\"Hello, World!\"}";
     private static final int[] MSGPACK_INTS = {129, 167, 109, 101, 115, 115, 97, 103, 101, 173, 72, 101, 108, 108, 111, 44, 32, 87, 111, 114, 108, 100, 33};
@@ -29,7 +29,7 @@ public class TestMessagePackUnpack {
         }
         MSGPACK_BYTES = bytes.toByteArray();
 
-        runner = TestRunners.newTestRunner(MessagePackUnpack.class);
+        runner = TestRunners.newTestRunner(ConvertMsgPackToJSON.class);
     }
 
     @Test
@@ -40,10 +40,10 @@ public class TestMessagePackUnpack {
         runner.enqueue(MSGPACK_BYTES, attributes);
         runner.run();
 
-        runner.assertTransferCount(MessagePackPack.REL_SUCCESS, 1);
-        runner.assertTransferCount(MessagePackPack.REL_FAILURE, 0);
+        runner.assertTransferCount(ConvertJSONToMsgPack.REL_SUCCESS, 1);
+        runner.assertTransferCount(ConvertJSONToMsgPack.REL_FAILURE, 0);
 
-        for (final MockFlowFile flowFile : runner.getFlowFilesForRelationship(MessagePackUnpack.REL_SUCCESS)) {
+        for (final MockFlowFile flowFile : runner.getFlowFilesForRelationship(ConvertMsgPackToJSON.REL_SUCCESS)) {
             flowFile.assertAttributeExists(CoreAttributes.MIME_TYPE.key());
             flowFile.assertAttributeEquals(CoreAttributes.MIME_TYPE.key(), "application/json");
             flowFile.assertAttributeExists("mime.extension");
